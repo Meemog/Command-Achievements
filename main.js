@@ -1,5 +1,6 @@
 const extractData = require('./methods/extractData');
 const incriment = require('./methods/increment');
+const stats = require('./methods/stats');
 
 const data = extractData(process.argv);
 
@@ -7,5 +8,6 @@ const data = extractData(process.argv);
 console.log(incriment(data));
 
 // Store stats of command (length, arguments, etc) and check against achievements
+console.log(stats(data));
 
 // Check command against specific achievement conditions
