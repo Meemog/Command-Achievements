@@ -1,6 +1,5 @@
-const achievements = require('./achievements')();
-
-module.exports = (data) => {
+module.exports = async (data) => {
+    const achievements = await require('./achievements')();
     const earned = [];
 
     const commandLength = data.command.length;
@@ -26,6 +25,6 @@ module.exports = (data) => {
         })
     }
 
-    achievements.save();
+    await achievements.save();
     return earned;
 }

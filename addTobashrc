@@ -1,6 +1,8 @@
 hook() {
-    last_cmd=$(history 1 | sed "s/ *[0-9]* *//")
-    PATH_TO_RUN "$last_cmd" $USER
+    last_cmd=$(fc -ln -1)
+    if bash -n -- "$last_cmd" 2>/dev/null; then
+        PATH_TO_RUN "$last_cmd" $USER
+    fi
 }
 
 PROMPT_COMMAND=hook

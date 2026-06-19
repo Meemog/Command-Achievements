@@ -1,36 +1,37 @@
-const fs = require("fs");
+const fs = require("fs/promises");
 const path = require("path");
 const os = require("os");
 
 const dir = path.join(os.homedir(), ".achievements");
 const file = path.join(dir, "data.json");
 
-function setupPath() {
+async function setupPath() {
     const templateFile = path.join(process.cwd(), "statsTemplate.json");
 
-    // 1. Ensure folder exists
-    if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
-    }
+    // Ensure folder exists
+    await fs.mkdir(dir, { recursive: true });
 
-    // 2. Ensure file exists
-    if (!fs.existsSync(file)) {
-    fs.copyFileSync(templateFile, file);
+    // Ensure file exists
+    try {
+        await fs.access(file);
+    } catch {
+        await fs.copyFile(templateFile, file);
     }
 }
 
-function loadData() {
-    setupPath();
-    const raw = fs.readFileSync(file, "utf-8");
+async function loadData() {
+    await setupPath();
+
+    const raw = await fs.readFile(file, "utf-8");
     return JSON.parse(raw || "{}");
 }
 
-function saveData(data) {
-    fs.writeFileSync(file, JSON.stringify(data, null, 2));
+async function saveData(data) {
+    await fs.writeFile(file, JSON.stringify(data, null, 2));
 }
 
-module.exports = () => {
-    const data = loadData(); 
+module.exports = async () => {
+    const data = await loadData();
 
     return {
         data,

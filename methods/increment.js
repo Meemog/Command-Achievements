@@ -1,8 +1,7 @@
-const achievements = require('./achievements')();
-
 const milestones = [1, 5, 10, 25, 50, 100];
 
-module.exports = (data) => {
+module.exports = async (data) => {
+    const achievements = await require('./achievements')();
     const earned = [];
 
     achievements.data.commandsRun++;
@@ -28,7 +27,7 @@ module.exports = (data) => {
             type: "Achievement"
         })
     }
-    achievements.save()
+    await achievements.save()
 
     return earned;
 }

@@ -1,5 +1,3 @@
-const achievements = require('./achievements')();
-
 module.exports = (data) => {
     const earned = [];
 
