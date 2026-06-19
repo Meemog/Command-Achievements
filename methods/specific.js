@@ -24,7 +24,8 @@ module.exports = (data) => {
         earned.push({
             name: "Oops",
             description: "That was a bad idea...",
-            type: "Achievement"
+            type: "Achievement",
+            id: 221
         })
     };
 
@@ -32,7 +33,8 @@ module.exports = (data) => {
         earned.push({
             name: "Open Vim",
             description: "Good luck quitting",
-            type: "Achievement"
+            type: "Achievement",
+            id: 222
         })
     }
 
@@ -40,7 +42,8 @@ module.exports = (data) => {
         earned.push({
             name: "Open Nano",
             description: "Should have used vim",
-            type: "Achievement"
+            type: "Achievement",
+            id: 223
         })
     }
 
@@ -65,7 +68,8 @@ module.exports = (data) => {
         earned.push({
             name: "First Slurm",
             description: "Run your first slurm command",
-            type: "Achievement"
+            type: "Achievement",
+            id: 224
         })
     }
 
@@ -74,7 +78,8 @@ module.exports = (data) => {
         earned.push({
             name: "Plumber",
             description: "Use 3 or more pipes in one command",
-            type: "Achievement"
+            type: "Achievement",
+            id: 225
         })
     }
 

@@ -52,7 +52,7 @@ const fs = require("fs/promises");
                 description: `You have run ${command} ${milestone} time${(milestone> 1) ? 's' : ''}`
             }
 
-            const res = await fetch('localhost:3000/achievement', {
+            const res = await fetch('http://localhost:3000/achievement', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -62,7 +62,7 @@ const fs = require("fs/promises");
 
             const data = await res.json()
 
-            idDict[command][milestone] = data["id"];
+            idDict[command][milestone] = data["data"];
         }
     }
 

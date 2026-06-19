@@ -1,3 +1,6 @@
+const fs = require("fs/promises");
+const path = require("path");
+
 const milestones = [1, 5, 10, 25, 50, 100];
 const commands = [
     "ls",
@@ -38,6 +41,15 @@ const commands = [
 ];
 
 module.exports = async (data) => {
+
+    const file = path.join(process.cwd(), "achievementIds.json");
+    const raw = await fs.readFile(file, "utf-8");
+    const achievementIDs =  JSON.parse(raw || "{}");
+
+    const file2 = path.join(process.cwd(), "achievementTotalIds.json");
+    const raw2 = await fs.readFile(file2, "utf-8");
+    const totalAchievementIDs =  JSON.parse(raw2 || "{}");
+
     const achievements = await require('./achievements')();
     const earned = [];
 
@@ -48,7 +60,8 @@ module.exports = async (data) => {
         earned.push({
             name: `RunX${timesRun}`,
             description: `You have run ${timesRun} command${(timesRun > 1) ? 's' : ''}`,
-            type: "Achievement"
+            type: "Achievement",
+            id: totalAchievementIDs[timesRun]
         })
     }
 
@@ -61,7 +74,8 @@ module.exports = async (data) => {
         earned.push({
             name: `${key} RunX${timesKeyRun}`,
             description: `You have run ${key} ${timesKeyRun} time${(timesKeyRun > 1) ? 's' : ''}`,
-            type: "Achievement"
+            type: "Achievement",
+            id: achievementIDs[key][timesKeyRun]
         })
     }
     await achievements.save()
