@@ -1,4 +1,41 @@
 const milestones = [1, 5, 10, 25, 50, 100];
+const commands = [
+    "ls",
+    "cd",
+    "pwd",
+    "mkdir",
+    "rmdir",
+    "rm",
+    "cp",
+    "mv",
+    "touch",
+    "cat",
+    "less",
+    "more",
+    "head",
+    "tail",
+    "grep",
+    "find",
+    "chmod",
+    "chown",
+    "ps",
+    "top",
+    "kill",
+    "df",
+    "du",
+    "uname",
+    "whoami",
+    "id",
+    "echo",
+    "tar",
+    "gzip",
+    "wget",
+    "curl",
+    "man",
+    "history",
+    "alias",
+    "exit"
+];
 
 module.exports = async (data) => {
     const achievements = await require('./achievements')();
@@ -20,7 +57,7 @@ module.exports = async (data) => {
     achievements.data.commands[key] = (achievements.data.commands[key] ?? 0) + 1;
     const timesKeyRun = achievements.data.commands[key];
 
-    if (milestones.includes(timesKeyRun)) {
+    if (milestones.includes(timesKeyRun) && commands.includes(key)) {
         earned.push({
             name: `${key} RunX${timesKeyRun}`,
             description: `You have run ${key} ${timesKeyRun} time${(timesKeyRun > 1) ? 's' : ''}`,
