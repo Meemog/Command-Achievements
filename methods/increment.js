@@ -10,7 +10,9 @@ module.exports = (data) => {
 
     if (milestones.includes(timesRun)) {
         earned.push({
-            name: `You have run ${timesRun} command${(timesRun > 1) ? 's' : ''}`
+            name: `RunX${timesRun}`,
+            description: `You have run ${timesRun} command${(timesRun > 1) ? 's' : ''}`,
+            type: "Achievement"
         })
     }
 
@@ -21,7 +23,9 @@ module.exports = (data) => {
 
     if (milestones.includes(timesKeyRun)) {
         earned.push({
-            name: `You have run ${key} ${timesKeyRun} time${(timesKeyRun > 1) ? 's' : ''}`
+            name: `${key} RunX${timesKeyRun}`,
+            description: `You have run ${key} ${timesKeyRun} time${(timesKeyRun > 1) ? 's' : ''}`,
+            type: "Achievement"
         })
     }
     achievements.save()
