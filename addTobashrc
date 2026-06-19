@@ -1,0 +1,6 @@
+hook() {
+    last_cmd=$(history 1 | sed "s/ *[0-9]* *//")
+    PATH_TO_RUN "$last_cmd" $USER
+}
+
+PROMPT_COMMAND=hook
